@@ -12,4 +12,14 @@ describe Video do
     south_park = Video.create(title: "South Park", description: "Funny video", category: comedies)
     expect(south_park.category).to eq(comedies)
   end
+  
+  it "needs to have a title" do
+    video = Video.create(description: "good video!")
+    expect(Video.count).to eq(0)
+  end
+  
+  it "needs to have a description" do
+    video = Video.create(title: "good video!")
+    expect(Video.count).to eq(0)
+  end
 end
