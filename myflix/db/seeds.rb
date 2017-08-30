@@ -11,6 +11,7 @@
 
 puts "#{Video.count} videos"
 Video.find_or_create_by(
+  id: 1,
   title: "Family Guy",
   description: "Sick, twisted and politically incorrect, 
   the animated series features the adventures of the Griffin family. Endearingly ignorant 
@@ -24,6 +25,7 @@ Video.find_or_create_by(
   category_id: 1
 )
 Video.find_or_create_by(
+  id: 2,
   title: "Futurama",
   description: "Accidentally frozen, pizza-deliverer Fry wakes up 1,000 
   years in the future. He is taken in by his sole descendant, an elderly and addled scientist who owns 
@@ -34,6 +36,7 @@ Video.find_or_create_by(
   category_id: 1
 )
 Video.find_or_create_by(
+  id: 3,
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
   small_cover_url: '/tmp/monk.jpg',
@@ -41,6 +44,7 @@ Video.find_or_create_by(
   category_id: 1
 )
 Video.find_or_create_by(
+  id: 4,
   title: "South Park", 
   description: "Funny Cartoon for adults", 
   small_cover_url: "/tmp/south_park.jpg", 
@@ -48,16 +52,17 @@ Video.find_or_create_by(
   category_id: 1
 )
 Video.find_or_create_by(
+  id: 5,
   title: 'Wonder Woman',
   description: 'Before she was Wonder Woman, she was Diana, princess of the Amazons, trained warrior. When a pilot crashes and tells of conflict in the outside world, she leaves home to fight a war, discovering her full powers and true destiny.',
   small_cover_url: '/tmp/wonderwoman.jpg',
-  large_cover_url: '/tmp//wonderwoman.jpg',
+  large_cover_url: '/tmp/wonderwoman.jpg',
   category_id: 2
 )
 puts "#{Video.count} videos"
   
 puts "#{Category.count} categories"
-Category.find_or_create_by(name: 'TV')
-Category.find_or_create_by(name: 'Movies')
-Category.find_or_create_by(name: "Reality TV")
+Category.find_or_create_by(id: 1, name: 'TV')
+Category.find_or_create_by(id: 2, name: 'Movies')
+Category.find_or_create_by(id: 3, name: "Reality TV")
 puts "#{Category.count} categories"
