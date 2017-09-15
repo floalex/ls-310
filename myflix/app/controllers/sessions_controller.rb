@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       login_users!(user)
     else
       flash[:danger] = 'Incorrect email or password.'
-      redirect_to :back
+      redirect_to sign_in_path
     end
   end
   

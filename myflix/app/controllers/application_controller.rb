@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   
   def access_denied
     flash[:warning] = "You must sign in or be an authorized user to see this page."
-    redirect_to root_path
+    redirect_to sign_in_path
   end
 end
