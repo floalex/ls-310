@@ -4,16 +4,26 @@ describe VideosController do
   let (:video) { Fabricate(:video) }
   
   describe 'GET show' do
-    it "sets @video for unauthenticated user" do
+    it "sets @video for authenticated user" do
       session[:user_id] = Fabricate(:user).id
       get :show, id: video.id
       expect(assigns(:video)).to eq(video)
+    end
+    
+    it "sets @reviews for authenticated users" do
+      session[:user_id] = Fabricate(:user).id
+      review1 = Fabricate(:review, video: video)
+      review2 = Fabricate(:review, video: video)
+      get :show, id: video.id
+      # =~: regardless of the orders
+      expect(assigns(:reviews)).to match_array([review1, review2])
     end
     
     it "redirects to sign in page for unauthenticated users" do
       get :show, id: video.id
       expect(response).to redirect_to(sign_in_path)
     end
+    
   end
   
   describe 'GET search' do

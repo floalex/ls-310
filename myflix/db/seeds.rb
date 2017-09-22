@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # run `rake db:seed` to create the data
 
-# personally prefer to use find_ot_create_by to only seed the post if it doesn't already exist
+# personally prefer to use find_or_create_by to only seed the post if it doesn't already exist(except for users)
 
 puts "#{Video.count} videos"
 Video.find_or_create_by(
@@ -182,7 +182,7 @@ Video.find_or_create_by(
   large_cover_url: "/tmp/futurama.jpg",
   category_id: 1
 )
-Video.find_or_create_by(
+monk = Video.find_or_create_by(
   id: 18,
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
@@ -207,6 +207,11 @@ Video.find_or_create_by(
   category_id: 2
 )
 puts "#{Video.count} videos"
+
+user1 = User.create(full_name: "Foo", password: "password", email: "foo@example.com")
+
+Review.find_or_create_by(user: user1, video: monk, rating: 5, content: "Very good movie")
+Review.find_or_create_by(user: user1, video: monk, rating: 2, content: "Very bad movie")
   
 puts "#{Category.count} categories"
 Category.find_or_create_by(id: 1, name: 'TV')

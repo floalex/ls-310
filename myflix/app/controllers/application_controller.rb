@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  # run sudo service postgresql start before server
+  
   protect_from_forgery with: :exception
   
   helper_method :current_user, :signed_in?

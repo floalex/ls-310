@@ -3,11 +3,6 @@
 # 2) we are going to deploy to Heroku, which uses Postgres as the database. It's always a good idea to keep
 # your local development database the same as your database on production.
 
-# Regardless which environment you are on, make sure that you use Postgres as your database on your development 
-# environment, because 1) Postgres is currently the best open-source SQL databases on the market and 
-# 2) we are going to deploy to Heroku, which uses Postgres as the database. It's always a good idea to keep
-# your local development database the same as your database on production.
-
 # 2. Run `sudo service postgresql start` in the command line. Then it should be up and running. You can test it in rails console.
 
 # Also, if you're getting an error on running bundle install saying something like "you are using Ruby version 2.1.5 but you have version 2.1.1 listed", try rvm use "2.1.1" in the command line.
