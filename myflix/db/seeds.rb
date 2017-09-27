@@ -208,7 +208,7 @@ Video.find_or_create_by(
 )
 puts "#{Video.count} videos"
 
-user1 = User.create(full_name: "Foo", password: "password", email: "foo@example.com")
+user1 = User.find_or_create_by(full_name: "Foo", password: "password", email: "foo@example.com")
 
 Review.find_or_create_by(user: user1, video: monk, rating: 5, content: "Very good movie")
 Review.find_or_create_by(user: user1, video: monk, rating: 2, content: "Very bad movie")

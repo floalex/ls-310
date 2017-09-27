@@ -52,6 +52,7 @@ describe TodosController do
   
   describe "Post create" do
     it "creates the todo record when the input is valid" do
+      # always start with the action
       post :create, todo: {name: "cook", description: "I like cooking"}
       expect(Todo.first.name).to be == "cook"
       expect(Todo.first.description).to be == "I like cooking"
