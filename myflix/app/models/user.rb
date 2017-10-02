@@ -4,4 +4,7 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
   
   has_secure_password validations: false
+  
+  has_many :reviews
+  has_many :queue_items
 end
