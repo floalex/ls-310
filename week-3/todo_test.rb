@@ -11,6 +11,14 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(params[:todo])
     if @todo.save
+      # if the slice part is not nil, we can call .strip, otherwise not
+      location_string = @todo.name.slice(/.*\bAT\b(.*)/, 1).try(:strip)
+      if location_string
+        locations = location_string.split(/\, |and/).map(&:strip)
+        locations.each do |location|
+          @todo.tags.create(name: "location:{#location_string}")
+        end
+      end
       redirect_to root_path
     else
       render :new
@@ -73,7 +81,37 @@ describe TodosController do
       response.should render_template :new
     end
     
+    it "does not create tags without inline locations" do
+      post :create, todo: {name: "cook"}
+      Tag.count.should == 0
+    end
+    
+    it "does not create tags with at in a word without inline locations" do
+      post :create, todo: {name: "eat an apple"}
+      Tag.count.should == 0
+    end
+    
+    it "creates a tag with upcase AT" do
+      post :create, todo: { name: "shop AT the Apple store" }
+      Tag.all.map(&:name).should == ["location:the Apple store"]
+    end
+    
     context "with inline locations" do
+      it "creates a tag with one location" do
+        post :create, todo: {name: "cook AT home"}
+        Tag.all.map(&:map).should == ['location:home']
+      end
+      
+      it "creates two tags with two locations" do
+        post :create, todo: {name: "cook AT home and work"}
+        Tag.all.map(&:map).should == ['location:home', 'location:work']
+      end
+      
+      it "creates multiple tags with four locations" do
+        post :create, todo: {name: "cook AT home, work, school and library"}
+        Tag.all.map(&:map).should == ['location:home', 'location:work', 'location:school', 'location:library']
+      end
+      
     end
   end
 end
