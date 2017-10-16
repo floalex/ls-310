@@ -16,7 +16,7 @@ class QueueItemsController < ApplicationController
     #make sure current user can't delete other people's queue items
     if current_user.queue_items.include?(queue_item) 
       queue_item.destroy
-      normalize_queue_item_positions
+      current_user.normalize_queue_item_positions
     end
     redirect_to my_queue_path
   end
@@ -24,7 +24,7 @@ class QueueItemsController < ApplicationController
   def update_queue
     begin
       update_queue_items
-      normalize_queue_item_positions
+      current_user.normalize_queue_item_positions
     rescue ActiveRecord::RecordInvalid
       flash[:danger] = "Invalid position number."
     end
@@ -59,9 +59,4 @@ class QueueItemsController < ApplicationController
     end
   end
   
-  def normalize_queue_item_positions
-    current_user.queue_items.each_with_index do |queue_item, index|
-      queue_item.update_attributes(position: index+1)
-    end
-  end
 end
