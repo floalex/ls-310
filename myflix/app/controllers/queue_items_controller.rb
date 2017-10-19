@@ -54,7 +54,7 @@ class QueueItemsController < ApplicationController
         queue_item = QueueItem.find(queue_item_data["id"])
         # In Rails #update_attribute is designed not to throw an exception when an update fails. It returns false. 
         # should ensure to use #! to throw an exception upon failure.
-        queue_item.update_attributes!(position: queue_item_data["position"]) if queue_item.user == current_user
+        queue_item.update_attributes!(position: queue_item_data["position"], rating: queue_item_data["rating"]) if queue_item.user == current_user
       end
     end
   end
