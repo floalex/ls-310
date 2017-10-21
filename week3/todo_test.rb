@@ -1,28 +1,12 @@
-# todos_controller.rb
-class TodosController < ApplicationController
-  def index 
-    @todos = Todo.all
-  end
-  
-  def new
-    @todo = Todo.new
-  end
-  
-  def create
-    @todo = Todo.new(params[:todo])
-    if @todo.save_with_tags # move the logic to model level
-      redirect_to root_path
-    else
-      render :new
-    end
-  end
-end
-
 # spec/controllers/todos_controller_spec.rb
 require 'spec_helper'
 
 describe TodosController do
   describe "GET index" do
+    before do
+      set_current_user
+    end
+    
     it "sets the @todos variable" do
       cook = Todo.create(name: "cook")
       sleep = Todo.create(name: "sleep")
@@ -34,6 +18,10 @@ describe TodosController do
     it "renders the index template" do
       get :index
       response.should render_template :index
+    end
+    
+    it_behaves_like "require_sign_in" do
+      let(:action) { get :index }
     end
   end
   
@@ -47,6 +35,10 @@ describe TodosController do
     it " renders the new template" do
       get :new
       response.should render_template :new
+    end
+    
+    it_behaves_like "require_sign_in" do
+      let(:action) { get :new }
     end
   end
   

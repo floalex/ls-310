@@ -30,3 +30,6 @@
 ## Skinny Controller, Fat Model is one of the most popular Rails architectural guidelines.
 
 ## Examples of fat controllers in some popular open source projects.
+
+## Use macros to make the tests more readable and less duplication
+  - Need to uncomment the `spec_rb` line in rails_help.rb
