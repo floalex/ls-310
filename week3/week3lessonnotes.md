@@ -33,3 +33,7 @@
 
 ## Use macros to make the tests more readable and less duplication
   - Need to uncomment the `spec_rb` line in rails_help.rb
+
+## Capybara gem: Feature tests
+  - syntax closers to business levels 
+  - Racktest: simulate browser experience 
