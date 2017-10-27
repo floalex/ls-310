@@ -2,11 +2,10 @@ require 'rails_helper'
 
 feature "User signs in" do
   scenario "signing with valid email and password" do
+    # put the sign in process to macro to avoid duplication
     alice = Fabricate(:user)
-    visit sign_in_path
-    fill_in "Email Address", with: alice.email
-    fill_in "Password", with: alice.password
-    click_button "Sign In"
+    
+    sign_in(alice)
     expect(page).to have_content(alice.full_name)
   end
 end

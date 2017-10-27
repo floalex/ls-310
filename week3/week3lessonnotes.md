@@ -37,3 +37,39 @@
 ## Capybara gem: Feature tests
   - syntax closers to business levels 
   - Racktest: simulate browser experience 
+  - OK to take baby steps to write the feature tests
+  - 4 phased tests in a single level abstraction, example:
+  ```
+  scenario "updates todo as completed" do
+    # setup
+    sign_in
+    create_todo "Buy milk"
+
+    # exercise
+    mark_complete "Buy milk"
+
+    # verify
+    expect(page).to have_completed_todo "Buy milk"
+    
+    # teardown not needed
+  end
+
+  def create_todo(name)
+    click_on "Add new todo"
+    fill_in "Name", with: name
+    click_on "Submit"
+  end
+
+  def mark_complete(name)
+    find(".todos li", text: name).click_on "Mark complete"
+  end
+
+  def have_completed_todo(name)
+    have_css(".todos li.completed", text: name)
+  end
+  ```
+
+
+## Launchy gem for debugging
+  - `save_and_open_page` => save the page in a temporary directory and we can open it in browser
+  
