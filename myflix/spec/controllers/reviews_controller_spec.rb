@@ -28,10 +28,7 @@ describe ReviewsController do
         it "creates a review associated with the video" do
           expect(Review.first.video).to eq(video)
         end
-        
-        it "creates a review associated with the signed in user" do
-          expect(Review.first.user).to eq(current_user)
-        end
+    
       end
       
       context "wiht invalid input" do

@@ -181,7 +181,7 @@ describe QueueItemsController do
     end
     
     context "with queue items that don't belong to the current user" do
-       it "does not change the queue items" do
+      it "does not change the queue items" do
         alice = Fabricate(:user)
         bob = Fabricate(:user)
         set_current_user(alice)
