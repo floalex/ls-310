@@ -8,6 +8,7 @@
 # run `rake db:seed` to create the data
 
 # personally prefer to use find_or_create_by to only seed the post if it doesn't already exist(except for users)
+# note for User model: since the column name is `password_digest` not `password`, need to use block version of `find_or_create_by`
 
 puts "#{Video.count} videos"
 Video.find_or_create_by(
@@ -208,10 +209,15 @@ Video.find_or_create_by(
 )
 puts "#{Video.count} videos"
 
-user1 = User.find_or_create_by(full_name: "Foo", password: "password", email: "foo@example.com")
+user1 = User.find_or_create_by(full_name: "Foo", email: "foo@example.com") {|user| user.password = "password"}
+user2 = User.find_or_create_by(full_name: "Bob", email: "bob@example.com") {|user| user.password = "password"}
+user3 = User.find_or_create_by(full_name: "Alice", email: "alice@example.com") {|user| user.password = "password"}
+user4 = User.find_or_create_by(full_name: "Joe", email: "joe@example.com") {|user| user.password = "password"}
 
 Review.find_or_create_by(user: user1, video: monk, rating: 5, content: "Very good movie")
 Review.find_or_create_by(user: user1, video: monk, rating: 2, content: "Very bad movie")
+
+Review.find_or_create_by(user: user2, video: monk, rating: 3, content: "OK movie")
   
 puts "#{Category.count} categories"
 Category.find_or_create_by(id: 1, name: 'TV')
