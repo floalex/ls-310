@@ -1,9 +1,9 @@
 Summary of how authentication is expected to work:
 
-1) If the user it not signed in, all "internal pages" (all pages other than the front landing page, 
+1) If the user is not signed in, all "internal pages" (all pages other than the front landing page, 
    register page and sign in page) should redirect to the front landing page.
 
-2) the /register path should take users to a register page (mock up of this page is also under /ui).
+2) the register path should take users to a register page (mock up of this page is also under /ui).
    User can create an account here, which will then redirect them to the sign in page.
 
 3) Once the user is signed in, we will take the user to the home page (the very first page we built).
