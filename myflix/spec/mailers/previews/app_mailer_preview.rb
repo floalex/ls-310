@@ -7,4 +7,10 @@ class AppMailerPreview < ActionMailer::Preview
     user = User.first
     AppMailer.send_forgot_password(user)
   end
+  
+  def invitation_email
+    invitation = Invitation.create(recipient_name: "Joe Smith", recipient_email: "joesmith@example.com", message: "Join MyFlix")
+    invitation.inviter = User.first
+    AppMailer.send_invitation_email(invitation)
+  end
 end

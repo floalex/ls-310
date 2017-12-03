@@ -8,7 +8,7 @@ feature "User resets password" do
     fill_in "Email Address", with: alice.email
     click_button "Send Email"
     
-    # seems `open_email` can't work on IDE workspace
+    # it seems `open_email` can't work on IDE workspace as :letter_opener gem only works on local machine
     # open_email(alice.email)
     # current_email.click_link("Reset My Password")
     
@@ -21,5 +21,7 @@ feature "User resets password" do
     fill_in "Password", with: "new_password"
     click_button "Sign In"
     expect(page).to have_content("Welcome, #{alice.full_name}")
+    
+    # clear_email
   end
 end
