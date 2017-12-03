@@ -30,17 +30,22 @@ describe InvitationsController do
       end
       
       it "creates an invitation" do
-        set_current_user
-        post :create, invitation: { recipient_name: "Joe Smith", recipient_email: "joesmith@example.com",
-                                    message: "Join MyFlix" }
-        expect(Invitation.count).to eq(1)
+        Sidekiq::Testing.inline! do
+          set_current_user
+
+          post :create, invitation: { recipient_name: "Joe Smith", recipient_email: "joesmith@example.com",
+                                      message: "Join MyFlix" }
+          expect(Invitation.count).to eq(1)
+        end
       end
       
       it "sends out an email to the recipient" do
-        set_current_user
-        post :create, invitation: { recipient_name: "Joe Smith", recipient_email: "joesmith@example.com",
-                                    message: "Join MyFlix" }
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["joesmith@example.com"])
+        Sidekiq::Testing.inline! do
+          set_current_user
+          post :create, invitation: { recipient_name: "Joe Smith", recipient_email: "joesmith@example.com",
+                                      message: "Join MyFlix" }
+          expect(ActionMailer::Base.deliveries.last.to).to eq(["joesmith@example.com"])
+        end
       end
       
       it "sets the flash success message" do

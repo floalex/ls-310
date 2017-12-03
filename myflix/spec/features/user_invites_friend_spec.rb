@@ -2,17 +2,19 @@ require 'rails_helper'
 
 feature "User invites friends" do
   scenario "user successfully invites a friend and the invitation is accepted" do
-    alice = Fabricate(:user)
-    sign_in(alice)
+    Sidekiq::Testing.inline! do
+      alice = Fabricate(:user)
+      sign_in(alice)
     
-    invite_a_friend
-    friend_accepts_invitation(alice)
-    friend_signs_in
+      invite_a_friend
+      friend_accepts_invitation(alice)
+      friend_signs_in
     
-    friend_should_follow_inviter(alice)
-    inviter_should_follow_friend(alice)
-    
-    # clear_email
+      friend_should_follow_inviter(alice)
+      inviter_should_follow_friend(alice)
+      
+      # clear_email
+    end
   end
   
   def invite_a_friend
