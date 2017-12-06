@@ -10,6 +10,7 @@
 # personally prefer to use find_or_create_by to only seed the post if it doesn't already exist(except for users)
 # note for User model: since the column name is `password_digest` not `password`, need to use block version of `find_or_create_by`
 
+# SELECT setval('videos_id_seq', (SELECT MAX(id) from "videos")); in psql
 puts "#{Video.count} videos"
 Video.find_or_create_by(
   id: 1,
