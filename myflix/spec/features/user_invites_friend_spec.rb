@@ -38,7 +38,7 @@
     
 #     invitation = Fabricate(:invitation, recipient_name: "John Doe", recipient_email: "johndoe@example.com", inviter: inviter)
 #     visit register_with_token_url(invitation.token)
-    
+
 #     fill_in "Password", with: "password"
 #     fill_in "Full Name", with: "John Doe"
     

@@ -9,6 +9,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rails'
 require 'capybara/email/rspec'
+require 'capybara/poltergeist'
 require 'sidekiq/testing'
 require 'webmock/rspec'
 require 'vcr'
@@ -101,11 +102,8 @@ VCR.configure do |c|
 end
 
 Capybara.register_driver :selenium do |app|
-  client = Selenium::WebDriver::Remote::Http::Default.new
-  client.open_timeout = 180 # instead of the default 60
-  client.read_timeout = 180 # instead of the default 60
   Capybara.server_port = 52662
   Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
-Capybara.javascript_driver = :selenium_chrome
+Capybara.javascript_driver = :poltergeist

@@ -13,4 +13,9 @@ class Video < ActiveRecord::Base
     # use of %: WHERE CustomerName LIKE '%or%':	Finds any values that have "or" in any position
     where("LOWER(title) LIKE ?", "%#{search_term.downcase}%").order("created_at DESC")
   end
+  
+  def rating
+    avg = reviews.average(:rating)
+    avg.round(1) if avg
+  end
 end
