@@ -12,7 +12,7 @@ module StripeWrapper
         response = Stripe::Charge.create(
           amount: options[:amount],
           currency: 'usd',
-          card: options[:card],
+          source: options[:source],
           description: options[:description]
         )
         new(response: response)
@@ -37,7 +37,8 @@ module StripeWrapper
     def self.create(options={})
       begin
         response = Stripe::Customer.create(
-          source: options[:card],
+          # options[:card] will have error "This customer has no attached payment source"
+          source: options[:source],
           email: options[:user].email,
           plan: 'base'
         )
@@ -49,6 +50,10 @@ module StripeWrapper
     
     def successful?
       response.present?
+    end
+    
+    def customer_token
+      response.id
     end
   end
 end

@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Dec 2017 20:34:09 GMT
+      - Mon, 11 Dec 2017 20:34:14 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_nandviJ73VlI0v
+      - req_HiThByxTwewqCr
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -58,10 +58,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1BXxyXBTaoFOGB2wN0HCTZ80",
+          "id": "tok_1BXxycBTaoFOGB2wsmWQRTgw",
           "object": "token",
           "card": {
-            "id": "card_1BXxyXBTaoFOGB2wGlAqoWEG",
+            "id": "card_1BXxycBTaoFOGB2wlC6oxHjD",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -85,19 +85,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "35.202.207.154",
-          "created": 1513024449,
+          "created": 1513024454,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Mon, 11 Dec 2017 20:34:09 GMT
+  recorded_at: Mon, 11 Dec 2017 20:34:14 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: source=tok_1BXxyXBTaoFOGB2wN0HCTZ80&email=rudy.nolan%40erdman.net&plan=base
+      string: source=tok_1BXxycBTaoFOGB2wsmWQRTgw&email=sebastian_jacobson%40kaulke.biz&plan=base
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.8.0
@@ -121,11 +121,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Dec 2017 20:34:11 GMT
+      - Mon, 11 Dec 2017 20:34:15 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3361'
+      - '3369'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -141,7 +141,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_wX5IT1UK5KH3GH
+      - req_3UfaJVqgzXvzNz
       Stripe-Version:
       - '2015-04-07'
       Strict-Transport-Security:
@@ -150,16 +150,16 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_BvpdSk7D9p681H",
+          "id": "cus_BvpdnsHZkOuwzY",
           "object": "customer",
           "account_balance": 0,
-          "created": 1513024450,
+          "created": 1513024454,
           "currency": "usd",
-          "default_source": "card_1BXxyXBTaoFOGB2wGlAqoWEG",
+          "default_source": "card_1BXxycBTaoFOGB2wlC6oxHjD",
           "delinquent": false,
           "description": null,
           "discount": null,
-          "email": "rudy.nolan@erdman.net",
+          "email": "sebastian_jacobson@kaulke.biz",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -167,7 +167,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1BXxyXBTaoFOGB2wGlAqoWEG",
+                "id": "card_1BXxycBTaoFOGB2wlC6oxHjD",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -179,7 +179,7 @@ http_interactions:
                 "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_BvpdSk7D9p681H",
+                "customer": "cus_BvpdnsHZkOuwzY",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
                 "exp_month": 5,
@@ -194,31 +194,31 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_BvpdSk7D9p681H/sources"
+            "url": "/v1/customers/cus_BvpdnsHZkOuwzY/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [
               {
-                "id": "sub_BvpdlTmXgP17Um",
+                "id": "sub_Bvpd5AmElKF8Y7",
                 "object": "subscription",
                 "application_fee_percent": null,
                 "billing": "charge_automatically",
                 "cancel_at_period_end": false,
                 "canceled_at": null,
-                "created": 1513024450,
-                "current_period_end": 1515702850,
-                "current_period_start": 1513024450,
-                "customer": "cus_BvpdSk7D9p681H",
+                "created": 1513024454,
+                "current_period_end": 1515702854,
+                "current_period_start": 1513024454,
+                "customer": "cus_BvpdnsHZkOuwzY",
                 "discount": null,
                 "ended_at": null,
                 "items": {
                   "object": "list",
                   "data": [
                     {
-                      "id": "si_BvpdLsVxdKBjyf",
+                      "id": "si_Bvpd7kCkMyzrnr",
                       "object": "subscription_item",
-                      "created": 1513024450,
+                      "created": 1513024455,
                       "metadata": {},
                       "plan": {
                         "id": "base",
@@ -239,7 +239,7 @@ http_interactions:
                   ],
                   "has_more": false,
                   "total_count": 1,
-                  "url": "/v1/subscription_items?subscription=sub_BvpdlTmXgP17Um"
+                  "url": "/v1/subscription_items?subscription=sub_Bvpd5AmElKF8Y7"
                 },
                 "livemode": false,
                 "metadata": {},
@@ -258,7 +258,7 @@ http_interactions:
                   "trial_period_days": null
                 },
                 "quantity": 1,
-                "start": 1513024450,
+                "start": 1513024454,
                 "status": "active",
                 "tax_percent": null,
                 "trial_end": null,
@@ -267,9 +267,9 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_BvpdSk7D9p681H/subscriptions"
+            "url": "/v1/customers/cus_BvpdnsHZkOuwzY/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Mon, 11 Dec 2017 20:34:11 GMT
+  recorded_at: Mon, 11 Dec 2017 20:34:15 GMT
 recorded_with: VCR 2.9.3
