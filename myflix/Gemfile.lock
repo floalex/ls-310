@@ -229,6 +229,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
     stripe (3.8.0)
       faraday (~> 0.10)
+    stripe_event (1.9.1)
+      activesupport (>= 3.1)
+      stripe (>= 1.6, < 4.0)
     temple (0.8.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -291,6 +294,7 @@ DEPENDENCIES
   shoulda-matchers (~> 3.0)
   sidekiq (= 4.2.10)
   stripe
+  stripe_event
   thin
   uglifier
   vcr
