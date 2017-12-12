@@ -1,4 +1,10 @@
 class Video < ActiveRecord::Base
+  ## Elasticsearch proxy: __elasticsearch__
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
+  index_name "myflix_#{Rails.env}"
+  
   belongs_to :category
   has_many :reviews, -> { order(created_at: :desc) }
   
