@@ -25,21 +25,33 @@ class Video < ActiveRecord::Base
     avg.round(1) if avg
   end
   
-  def self.search(query)
+  def self.search(query, options={})
     search_definition = {
       query: {
         multi_match: {
           query: query,
-          fields: ['title', 'description'],
+          # matches with video titles will have the most weight, then the matches against video 
+          # descriptions, and finally matches against videos' reviews. Specifically, the weights 
+          # for the three are going to be 100:50:1.
+          fields: ['title^100', 'description^50'],
           operator: 'and'
         }
       }
     }
     
+    if query.present? && options[:reviews].present?
+      search_definition[:query][:multi_match][:fields] << "reviews.content"
+    end
+    
     __elasticsearch__.search(search_definition)
   end
   
   def as_indexed_json(options={})
-    as_json(only: [:title, :description])
+    as_json(
+      only: [:title, :description],
+      include: {
+        reviews: { only: [:content] }
+      }
+    )
   end
 end
